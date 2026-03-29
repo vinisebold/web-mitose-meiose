@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CellViz - Visualizador Interativo de Divisao Celular em 3D">
+  <title>CellViz - Mitose & Meiose</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/theme.css">
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- Welcome Screen -->
+    <div class="welcome" id="welcome-screen">
+      <div class="welcome__icon">🔬</div>
+      <h1 class="welcome__title">CellViz</h1>
+      <p class="welcome__subtitle">
+        Visualizador interativo de divisao celular em 3D.
+        Explore os processos de mitose e meiose com animacoes detalhadas.
+      </p>
+      <div class="welcome__actions">
+        <button class="welcome__btn welcome__btn--mitosis" id="btn-start-mitosis">
+          🔵 Mitose
+        </button>
+        <button class="welcome__btn welcome__btn--meiosis" id="btn-start-meiosis">
+          🟣 Meiose
+        </button>
+        <button class="welcome__btn welcome__btn--compare" id="btn-start-compare">
+          ⚖️ Comparar
+        </button>
+      </div>
+    </div>
+
+    <!-- Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Header -->
+    <header class="app-header" id="app-header" style="display:none;">
+      <a href="#" class="app-header__logo" id="logo-link">
+        <span class="app-header__logo-icon">🔬</span>
+        <span>CellViz</span>
+      </a>
+      <nav class="app-header__nav">
+        <button class="app-header__nav-btn app-header__nav-btn--active" data-process="mitosis" id="nav-mitosis">
+          <span>🔵</span> <span>Mitose</span>
+        </button>
+        <button class="app-header__nav-btn" data-process="meiosis" id="nav-meiosis">
+          <span>🟣</span> <span>Meiose</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" style="display:none;">
+      <button class="sidebar__toggle" id="sidebar-toggle">◀</button>
+      <div class="sidebar__header">
+        <div class="sidebar__phase-name" id="phase-name">Interfase</div>
+        <div class="sidebar__phase-number" id="phase-number">1 / 6</div>
+      </div>
+      <div class="sidebar__content">
+        <p class="sidebar__description" id="phase-description"></p>
+        <div class="sidebar__events-title">Eventos-chave</div>
+        <div id="phase-events"></div>
+      </div>
+    </aside>
+
+    <!-- Timeline -->
+    <div class="timeline" id="timeline" style="display:none;"></div>
+
+    <!-- Controls -->
+    <div class="controls-hud" id="controls-hud" style="display:none;">
+      <button class="controls-hud__btn" id="btn-prev" title="Fase anterior (←)">⏮</button>
+      <button class="controls-hud__btn controls-hud__btn--play" id="btn-play" title="Play/Pause (Espaco)">▶</button>
+      <button class="controls-hud__btn" id="btn-next" title="Proxima fase (→)">⏭</button>
+      <div class="controls-hud__divider"></div>
+      <button class="controls-hud__btn" id="btn-reset" title="Reiniciar">↺</button>
+      <div class="controls-hud__divider"></div>
+      <button class="controls-hud__speed" id="btn-speed" title="Velocidade">1x</button>
+    </div>
+
+    <!-- Quiz -->
+    <div class="quiz-overlay" id="quiz-overlay">
+      <div class="quiz-modal">
+        <div class="quiz-modal__title">Quiz de Fixacao</div>
+        <div class="quiz-modal__question" id="quiz-question"></div>
+        <div class="quiz-modal__options" id="quiz-options"></div>
+        <div class="quiz-modal__feedback" id="quiz-feedback"></div>
+        <button class="quiz-modal__continue" id="quiz-continue">Continuar</button>
+      </div>
+    </div>
+
+    <!-- Keyboard hints -->
+    <div class="keyboard-hint" id="keyboard-hint" style="display:none;">
+      <span><kbd>Espaco</kbd> Play</span>
+      <span><kbd>← →</kbd> Fases</span>
+      <span><kbd>S</kbd> Sidebar</span>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
