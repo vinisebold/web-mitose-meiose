@@ -1,0 +1,5 @@
+export { default as Profase } from './Profase'
+export { default as Metafase } from './Metafase'
+export { default as Anafase } from './Anafase'
+export { default as Telofase } from './Telofase'
+export { default as Citocinese } from './Citocinese'
